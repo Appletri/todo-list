@@ -1,5 +1,8 @@
 
-
+.selected {
+    font-size: larger;
+    font-weight: 600;
+}
 
 .selectable {
     cursor: pointer;

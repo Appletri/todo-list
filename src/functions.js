@@ -1,6 +1,6 @@
 export {createList, addNavFunc, setupInput};
-import { selNavArrList, All, Today} from "./todo-data";
-import { todoItem, project} from "./classes";
+import { selNavArrList, projects} from "./todo-data";
+import task from "./Classes/task";
 
 //functions
 function createList(arrList,parent){
@@ -23,8 +23,26 @@ function addNavFunc(){
 };
 
 function goTo(e){
-    
-    console.table(eval(e.target.textContent));
+    for (let y=0; y<selNavArrList.length;y++){
+        let nav = document.querySelector(`.${selNavArrList[y]}`)
+        nav.classList.remove('selected');
+    }
+    e.target.classList.add('selected');
+
+    for (let i=0; i<projects.length; i++){
+        if (e.target.textContent === projects[i].name){
+            console.log(projects[i].tasks);
+        }
+        else if (e.target.textContent === 'Today'){
+            console.log('Today tasks')
+        }
+        else if (e.target.textContent === 'Week'){
+            console.log('Week tasks')
+        }
+        else if (e.target.textContent === 'All'){
+            console.log('All tasks')
+        }
+    }
 };
 
 function setupInput(parent){
@@ -63,17 +81,24 @@ function setupInput(parent){
     mainInput.appendChild(button);
 };
 
-function addTask(){
+function addTask(e){
     const taskIn = document.querySelector('.task');
     const ddIn = document.querySelector('.dueDate');
     const time = document.querySelector('.time');
-    if (taskIn.value === '' || ddIn.value === ''){
+    let selProject = document.querySelector('.selected').textContent;
+
+    if (taskIn.value === '' || ddIn.value === '' || selProject === null){
         return;
     }
     else {
-        let newTask = new todoItem(taskIn.value, ddIn.value, time.value, All);
-        newTask.assignId();
-        All.push(newTask);
-        console.table (All); 
+        for(let i = 0; i<projects.length;i++){
+            if (projects[i].name === selProject){
+                let newTask = new task(taskIn.value, ddIn.value, time.value, projects[i].tasks);
+                // newTask.assignId();
+                projects[i].tasks.push(newTask);
+                console.table (projects[i].tasks); 
+
+            }
+        }
     }
 };

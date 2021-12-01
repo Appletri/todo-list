@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './style.css';
 import {addNavFunc, createList, setupInput} from './functions.js';
-import {navArrMain,projects} from './todo-data.js';
+import {navArrMain,projectsTitle} from './todo-data.js';
 
 init();
 
@@ -18,7 +18,7 @@ function init(){
     const navbar = document.createElement('nav');
     document.body.appendChild(navbar);
     createList(navArrMain,navbar);
-    createList(projects, document.querySelector('.Projects'));
+    createList(projectsTitle, document.querySelector('.Projects'));
     //navbar eventlistener
     addNavFunc();
 
