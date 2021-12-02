@@ -31,7 +31,7 @@ function goTo(e){
 
     for (let i=0; i<projects.length; i++){
         if (e.target.textContent === projects[i].name){
-            console.log(projects[i].tasks);
+            updateContent(projects[i].tasks);
         }
         else if (e.target.textContent === 'Today'){
             console.log('Today tasks')
@@ -54,6 +54,8 @@ function setupInput(parent){
     const inputTitle = document.createElement('h2');
     const taskForm = document.createElement('form');
     const button = document.createElement('button');
+
+    mainInput.className = 'task-input';
     button.type = 'submit';
     button.textContent = 'Add';
     button.addEventListener('click', addTask);
@@ -87,7 +89,7 @@ function addTask(e){
     const time = document.querySelector('.time');
     let selProject = document.querySelector('.selected').textContent;
 
-    if (taskIn.value === '' || ddIn.value === '' || selProject === null){
+    if (taskIn.value === '' || ddIn.value === '' || selProject === null || selProject ==='Today' || selProject ==='Week' || selProject ==='All'){
         return;
     }
     else {
@@ -97,8 +99,26 @@ function addTask(e){
                 // newTask.assignId();
                 projects[i].tasks.push(newTask);
                 console.table (projects[i].tasks); 
-
+                updateContent(projects[i].tasks);
             }
         }
     }
 };
+
+function updateContent(arr){
+    const content = document.querySelector('.content');
+    content.innerHTML = '';
+
+    for (let i = 0; i < arr.length; i++){
+        let div = document.createElement('div');
+        div.className = "taskItem";
+        div.innerHTML = `<p>${arr[i].task} <p>${arr[i].dueDate} <p>${arr[i].time} <p>${arr[i].status}`;
+        
+        if (i == 0 || i % 2 == 0) {
+            div.classList.add("other-line");
+        }
+        content.appendChild(div);
+    }
+
+    
+}
