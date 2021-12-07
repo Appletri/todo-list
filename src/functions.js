@@ -1,5 +1,5 @@
-export {createList, addNavFunc, setupInput};
-import { selNavArrList, projects} from "./todo-data";
+export {createList, addNavFunc, setupInput, updateContent};
+import { selNavArrList, projects, allTasks, todayTasks, weekTasks} from "./todo-data";
 import task from "./Classes/task";
 
 //functions
@@ -30,17 +30,21 @@ function goTo(e){
     e.target.classList.add('selected');
 
     for (let i=0; i<projects.length; i++){
+
         if (e.target.textContent === projects[i].name){
-            updateContent(projects[i].tasks);
+            return updateContent(projects[i].tasks);
         }
         else if (e.target.textContent === 'Today'){
-            console.log('Today tasks')
+            console.log(todayTasks);
+            return updateContent(todayTasks);
         }
         else if (e.target.textContent === 'Week'){
-            console.log('Week tasks')
+            console.log(weekTasks);
+            return updateContent(weekTasks);
         }
-        else if (e.target.textContent === 'All'){
-            console.log('All tasks')
+        else if (e.target.textContent === 'All'){    
+            console.table (allTasks);
+            return updateContent(allTasks);
         }
     }
 };
@@ -51,7 +55,7 @@ function setupInput(parent){
     const inputArrType = ['type', 'date', 'time'];
 
     const mainInput = document.createElement('div');
-    const inputTitle = document.createElement('h2');
+    // const inputTitle = document.createElement('h2');
     const taskForm = document.createElement('form');
     const button = document.createElement('button');
 
@@ -60,10 +64,10 @@ function setupInput(parent){
     button.textContent = 'Add';
     button.addEventListener('click', addTask);
     
-    inputTitle.textContent = 'Task Input'
+    // inputTitle.textContent = 'Task Input'
 
     parent.appendChild(mainInput);
-    mainInput.appendChild(inputTitle);
+    // mainInput.appendChild(inputTitle);
     mainInput.appendChild(taskForm);
 
     for (let i=0;i<inputArrLabel.length;i++){
@@ -96,7 +100,7 @@ function addTask(e){
         for(let i = 0; i<projects.length;i++){
             if (projects[i].name === selProject){
                 let newTask = new task(taskIn.value, ddIn.value, time.value, projects[i].tasks);
-                // newTask.assignId();
+                newTask.assignId();
                 projects[i].tasks.push(newTask);
                 console.table (projects[i].tasks); 
                 updateContent(projects[i].tasks);
@@ -111,9 +115,11 @@ function updateContent(arr){
 
     for (let i = 0; i < arr.length; i++){
         let div = document.createElement('div');
+        let targetId = arr[i].id;
         div.className = "taskItem";
-        div.innerHTML = `<p>${arr[i].task} <p>${arr[i].dueDate} <p>${arr[i].time} <p>${arr[i].status}`;
-        
+        div.innerHTML = `<p>${arr[i].task} <p>${arr[i].dueDate} <p>${arr[i].time}`;
+        addDelete(div, targetId, arr);
+
         if (i == 0 || i % 2 == 0) {
             div.classList.add("other-line");
         }
@@ -122,3 +128,17 @@ function updateContent(arr){
 
     
 }
+
+function addDelete(parent, targetId, arr) {
+    let deleteButton = document.createElement('div');
+    deleteButton.className = "delete";
+    deleteButton.textContent = 'X';
+    deleteButton.onclick = function () {
+        let indexId = arr.findIndex (o => o.id === targetId);
+        arr.splice( indexId, 1 );
+        updateContent(arr);
+        console.table (arr);
+    };
+    parent.appendChild(deleteButton);
+}
+

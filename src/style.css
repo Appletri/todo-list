@@ -7,6 +7,8 @@ header{
     background-color: #df6666;
     display: block;
     color: white;
+    line-height: 5rem;
+
 }
 h1{
     font-size: 5rem;
@@ -17,19 +19,56 @@ nav{
     width: 25vw;
     font-size: 2rem;
     background-color: aquamarine;
+    height: 92vh;
 }
 
+nav ul{
+    line-height: 2.2rem;
+}
 .main{
     display:flex;
     flex-direction: column;
-    margin-left: 28vw;
+    margin-left: 25vw;
+    padding-left: 1rem;
     
 }
 
+.task-input{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+form{
+    display:flex;
+    font-size: 1.5rem;
+    gap: 1.5rem;
+    
+}
+
+.taskItem, .taskHeaders{
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    padding-right: 5rem;
+    height: 2rem;
+
+}
+
+.taskHeaders p, .taskItem p{
+    width: 20rem;
+    overflow: hidden;
+
+}
+
+.other-line{
+    background-color: rgb(226, 226, 226);
+}
 
 .selected {
     font-size: larger;
     font-weight: 600;
+    list-style:disc;
 }
 
 .selectable {
@@ -38,4 +77,26 @@ nav{
 
 .selectable:hover {
     color: blue;
+}
+
+.delete{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width:30px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(255, 0, 98);
+    color: white;  
+    font-size: 15px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.delete:hover {
+    background-color: rgb(190, 0, 73);
+    cursor: pointer;
 }

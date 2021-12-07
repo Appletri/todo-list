@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './style.css';
-import {addNavFunc, createList, setupInput} from './functions.js';
-import {navArrMain,projectsTitle} from './todo-data.js';
+import {addNavFunc, createList, setupInput, updateContent} from './functions.js';
+import {navArrMain,projectsTitle,projects} from './todo-data.js';
 
 init();
 
@@ -29,9 +29,19 @@ function init(){
 
     //input fields
     setupInput(main);
+    const taskHeaders = document.createElement('div');
+    const taskHeadArr = ['Name', 'Due Date', 'Time'];
+    taskHeaders.className = 'taskHeaders';
+    for (let i=0; i<taskHeadArr.length; i++){
+        const para = document.createElement('p');
+        para.textContent = taskHeadArr[i];
+        taskHeaders.appendChild(para);
+    }
+    main.appendChild(taskHeaders);
 
     //changing content section
     const content = document.createElement('div');
     content.className = 'content';
     main.appendChild(content);
+    updateContent(projects[0].tasks);
 };
