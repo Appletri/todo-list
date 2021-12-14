@@ -20,11 +20,38 @@ nav{
     font-size: 2rem;
     background-color: aquamarine;
     height: 92vh;
+    user-select: none;
 }
 
 nav ul{
     line-height: 2.2rem;
 }
+.project-list{
+    margin-bottom: 2rem;
+}
+.edit-projects-div{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: -40px;
+    padding: 1rem 0px;
+}
+.edit-projects{
+    width: 12vw;
+    border: none;
+    font-size: 2rem;
+    font-family: 'NTR', sans-serif;;
+    height: 1.5rem;
+    background-color: aquamarine;
+}
+.add-project{
+    transition: ease 0.3s;
+}
+
+.add-project:hover {
+    color: blue;
+}
+
 .main{
     display:flex;
     flex-direction: column;
@@ -99,4 +126,13 @@ form{
 .delete:hover {
     background-color: rgb(190, 0, 73);
     cursor: pointer;
+}
+
+.priority{
+    display: block;
+    width: .5rem;
+    height: 2rem;
+    background-color: green;
+    transform: translateX(-.5rem);
+    
 }

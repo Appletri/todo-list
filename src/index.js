@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './style.css';
-import {addNavFunc, createList, setupInput, updateContent} from './functions.js';
-import {navArrMain,projectsTitle,projects} from './todo-data.js';
+import {addNavFunc, createList, setupInput, updateContent, addProjectButton} from './functions.js';
+import {navArrMain,projectsTitle,projects,selNavArrList} from './todo-data.js';
 
 init();
 
@@ -17,10 +17,11 @@ function init(){
     //navbar
     const navbar = document.createElement('nav');
     document.body.appendChild(navbar);
-    createList(navArrMain,navbar);
-    createList(projectsTitle, document.querySelector('.Projects'));
+    createList(navArrMain,navbar,'nav-list');
+    createList(projectsTitle, document.querySelector('.Projects'), 'project-list');
+    addProjectButton(document.querySelector('.Projects'));
     //navbar eventlistener
-    addNavFunc();
+    addNavFunc(selNavArrList);
 
     //main
     const main = document.createElement('div');
