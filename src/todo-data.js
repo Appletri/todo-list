@@ -38,21 +38,21 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
           "tasks": [
             {
               "task": "Play Valorant Rank",
-              "dueDate": "2021-12-07",
+              "dueDate": `${fns.format(new Date(new Date().getTime() + (20 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "21:00",
               "status": "incomplete",
               "id": 781
             },
             {
               "task": "Play TFT ",
-              "dueDate": "2021-12-08",
+              "dueDate": `${fns.format(new Date(new Date().getTime() + (12 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "00:00",
               "status": "incomplete",
               "id": 586
             },
             {
               "task": "Play Street Fighter",
-              "dueDate": "2021-12-08",
+              "dueDate": `${fns.format(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "18:00",
               "status": "incomplete",
               "id": 469

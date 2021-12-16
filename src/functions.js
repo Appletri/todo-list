@@ -127,7 +127,7 @@ function updateContent(arr, filterTrue){
         let div = document.createElement('div');
         let targetId = arr[i].id;
         div.className = "taskItem";
-        div.innerHTML = `<div class='priority' id='${arr[i].id}'></div> <input class='checkbox' type='checkbox'> <p>${arr[i].task} <p id='${arr[i].id}date'>${arr[i].dueDate} <p>${timeConversion(arr[i].time)}`;
+        div.innerHTML = `<div class='priority' id='${arr[i].id}'></div> <input id='${arr[i].id}cb' class='checkbox' type='checkbox'> <p>${arr[i].task} <p id='${arr[i].id}date'>${arr[i].dueDate} <p>${timeConversion(arr[i].time)}`;
         if (filterTrue === true){
             addDelete(div, targetId, arr);
         }
@@ -138,16 +138,15 @@ function updateContent(arr, filterTrue){
         
         content.appendChild(div);
         updatePriority(arr[i].id, arr[i].time, arr[i].dueDate);
+        
     }
     sortByTime(arr);
-    addCheckFunc();
+    addCheckFunc(arr);
     // console.table(projects);
     localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-function updateStatus(element){
-    console.log('working');
-}
+
 
 function timeConversion(time){
     const hours =  time.split(':')[0];
@@ -179,17 +178,50 @@ function addDelete(parent, targetId, arr) {
     parent.appendChild(deleteButton);
 }
 
-function addCheckFunc() {
+function addCheckFunc(arr) {
     const checkboxes = document.querySelectorAll('.checkbox');
-    checkboxes.forEach(item => item.addEventListener('change', function () {
-        if(this.checked === true) {
-            this.parentNode.classList.add('checked');
-        } else {
-            this.parentNode.classList.remove('checked');
-        }
-    }));
-};
 
+    for(let i=0; i<arr.length; i++){
+        updateCompletion(arr[i]);    
+    }
+
+    function updateCompletion(task){
+        if (task.status === 'complete'){
+            console.log(task);
+            document.getElementById(`${task.id}cb`).checked = true;
+            document.getElementById(`${task.id}`).parentNode.classList.add('checked');
+        }
+    }
+    
+    checkboxes.forEach(item => item.addEventListener('change', function () {
+        const e = this.parentNode;
+        if(this.checked === true) {
+            e.classList.add('checked');
+        } 
+        else {
+            e.classList.remove('checked');
+        }
+        markComplete(projects, this.id, this.checked);
+    }));
+
+    function markComplete(arr, targetId, ifChecked) {
+        for(let i=0; i<arr.length; i++){
+            for(let y=0; y<arr[i].tasks.length; y++){
+                if (targetId == ((arr[i].tasks[y].id)+'cb')){
+                    if (ifChecked === true){
+                        arr[i].tasks[y].status = 'complete';
+                        console.table(arr[i].tasks[y]);   
+                    }
+                    else{
+                        arr[i].tasks[y].status = 'incomplete';
+                        console.table(arr[i].tasks[y]);   
+                    }
+                    return
+                }
+            }
+        }
+    }
+};
 
 function getAll() {
     const taskArray = [];
@@ -316,7 +348,7 @@ function updatePriority(id, time, date){
     const taskH = time.split(':')[0];
     const taskM = time.split(':')[1];
     const fns = require('date-fns');
-    const result = fns.differenceInHours(
+    const result = fns.differenceInMinutes(
         (new Date()),
         (new Date(dateY, dateM, dateD, taskH, taskM))    
     );
@@ -325,7 +357,7 @@ function updatePriority(id, time, date){
             return -1;
         }
         else {            
-            const value = Math.round((num/10));
+            const value = Math.floor((num/600));
             if (value > 99){
                 value = 100
             }
