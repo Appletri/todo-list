@@ -112,7 +112,7 @@ function addTask(e){
                 let newTask = new task(taskIn.value, ddIn.value, time.value, projects[i].tasks);
                 newTask.assignId();
                 projects[i].tasks.push(newTask);
-                console.table (projects[i].tasks); 
+                // console.table (projects[i].tasks); 
                 updateContent(projects[i].tasks, true);
             }
         }
@@ -127,21 +127,26 @@ function updateContent(arr, filterTrue){
         let div = document.createElement('div');
         let targetId = arr[i].id;
         div.className = "taskItem";
-        div.innerHTML = `<div class='priority' id='${arr[i].id}'></div> <p>${arr[i].task} <p>${arr[i].dueDate} <p>${timeConversion(arr[i].time)}`;
+        div.innerHTML = `<div class='priority' id='${arr[i].id}'></div> <input class='checkbox' type='checkbox'> <p>${arr[i].task} <p id='${arr[i].id}date'>${arr[i].dueDate} <p>${timeConversion(arr[i].time)}`;
         if (filterTrue === true){
             addDelete(div, targetId, arr);
         }
-
+        
         if (i == 0 || i % 2 == 0) {
             div.classList.add("other-line");
         }
-        updatePriority(arr[i].id, arr[i].time, arr[i].dueDate);
+        
         content.appendChild(div);
+        updatePriority(arr[i].id, arr[i].time, arr[i].dueDate);
     }
     sortByTime(arr);
-    
-    console.table(projects);
+    addCheckFunc();
+    // console.table(projects);
     localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+function updateStatus(element){
+    console.log('working');
 }
 
 function timeConversion(time){
@@ -169,10 +174,22 @@ function addDelete(parent, targetId, arr) {
         let indexId = arr.findIndex (o => o.id === targetId);
         arr.splice( indexId, 1 );
         updateContent(arr, true);
-        console.table (arr);
+        // console.table (arr);
     };
     parent.appendChild(deleteButton);
 }
+
+function addCheckFunc() {
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(item => item.addEventListener('change', function () {
+        if(this.checked === true) {
+            this.parentNode.classList.add('checked');
+        } else {
+            this.parentNode.classList.remove('checked');
+        }
+    }));
+};
+
 
 function getAll() {
     const taskArray = [];
@@ -241,7 +258,7 @@ function addNewProj() {
             let indexId = arr.findIndex (o => o.id === targetId);
             arr.splice( indexId, 1 );
             updateNav();
-            console.table (arr);
+            // console.table (arr);
         };
         parent.appendChild(deleteButton);
     }
@@ -292,20 +309,39 @@ function sortByTime(arr) {
 }
 
 function updatePriority(id, time, date){
+    
     const dateY = date.split('-')[0];
-    const dateM = date.split('-')[1];
-    const dateD = date.split('-')[1];
+    const dateM = (date.split('-')[1])-1;
+    const dateD = date.split('-')[2];
     const taskH = time.split(':')[0];
     const taskM = time.split(':')[1];
     const fns = require('date-fns');
-    const currentTime = fns.format(new Date().getTime(),'yyyy, M, d, H, mm');
-    console.log(currentTime);
     const result = fns.differenceInHours(
-        (parseFloat(currentTime)),
-        (dateY, dateM, dateD, taskH, taskM)    
+        (new Date()),
+        (new Date(dateY, dateM, dateD, taskH, taskM))    
     );
-    console.log (result);
+    function weight(num){
+        if (num>-10 && num<0){
+            return -1;
+        }
+        else {            
+            const value = Math.round((num/10));
+            if (value > 99){
+                value = 100
+            }
+            return value;
+        }
 
-    // document.getElementById(id).style.filter = `greyscale(${weight}%)`;
+    }   
+
+    const currentW = weight(result);
+
+    if (currentW >= 0){
+        document.getElementById(`${id}`).style.filter = `grayscale(100%)`;
+        document.getElementById(`${id}date`).textContent = 'OVERDUE'
+    }
+    else {
+        document.getElementById(`${id}`).style.filter = `grayscale(${currentW*-1}%)`;
+    }
 
 }

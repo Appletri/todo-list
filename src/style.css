@@ -132,7 +132,16 @@ form{
     display: block;
     width: .5rem;
     height: 2rem;
-    background-color: green;
+    background-color: rgb(255, 0, 98);
     transform: translateX(-.5rem);
     
+}
+
+.checkbox:active{
+    background-color: aquamarine;
+}
+
+.checked {
+    color: grey;
+    text-decoration: line-through;
 }
