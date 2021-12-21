@@ -14,6 +14,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(), "yyyy-MM-dd")}`,
               "time": "17:00",
               "status": "incomplete",
+              "detail": "Chest day",
               "id": 723
             },
             {
@@ -21,6 +22,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(), "yyyy-MM-dd")}`,
               "time": "16:00",
               "status": "incomplete",
+              "detail": "2000 meters",
               "id": 45
             },
             {
@@ -28,6 +30,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
                 "dueDate": "2021-12-07",
                 "time": "13:00",
                 "status": "incomplete",
+                "detail": "Volleyball scrimmage with friends",
                 "id": 782
             }
           ],
@@ -41,6 +44,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(new Date().getTime() + (20 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "21:00",
               "status": "incomplete",
+              "detail": "Get to Plat already",
               "id": 781
             },
             {
@@ -48,6 +52,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(new Date().getTime() + (12 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "00:00",
               "status": "incomplete",
+              "detail": "",
               "id": 586
             },
             {
@@ -55,6 +60,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "18:00",
               "status": "incomplete",
+              "detail": "Practice your oki",
               "id": 469
             }
           ],
@@ -68,6 +74,7 @@ if (JSON.parse(localStorage.getItem('projects')) == null || projects.length == 0
               "dueDate": `${fns.format(new Date(new Date().getTime() + (8 * 24 * 60 * 60 * 1000)), "yyyy-MM-dd")}`,
               "time": "18:00",
               "status": "incomplete",
+              "detail": "3rd season",
               "id": 265
             }
           ],

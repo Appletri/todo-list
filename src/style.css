@@ -146,3 +146,9 @@ form{
     color: grey;
     text-decoration: line-through;
 }
+.details{
+    width: 50vw;
+    height:7rem;
+    background-color: #df666600;
+    border: none;
+}

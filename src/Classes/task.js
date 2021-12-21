@@ -5,6 +5,7 @@ module.exports = class task {
         this.time = time;
         this.status = 'incomplete';
         this.id = 0;
+        this.detail = '';
         this.assignId = function () {
             const arrayId = parentArray.map(a => a.id);
             const randomId = getRandomInt(1000);

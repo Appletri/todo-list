@@ -137,6 +137,9 @@ function updateContent(arr, filterTrue){
         }
         
         content.appendChild(div);
+        div.detInfo = arr[i].detail;
+        div.id = targetId;
+        div.addEventListener('click',showDetails);
         updatePriority(arr[i].id, arr[i].time, arr[i].dueDate);
         
     }
@@ -146,7 +149,51 @@ function updateContent(arr, filterTrue){
     localStorage.setItem('projects', JSON.stringify(projects));
 }
 
+function showDetails(e){
+    const previousDetails = document.querySelector('.details-block');
+    const div = document.createElement('div');
+    const content = document.querySelector('.content');
 
+
+    if (previousDetails !== null){
+        content.removeChild(previousDetails);
+    }
+    
+    div.className = 'details-block';
+
+    if (e.target.parentNode.className === 'taskItem other-line'){
+        div.classList.add('other-line');
+    }
+    // console.log(e.target.parentNode.firstChild.id);
+    addDetails(div,e.currentTarget.detInfo,e.currentTarget.id);
+    
+    content.insertBefore(div, e.target.parentNode.nextSibling);
+    
+    
+    function addDetails(parent,notes,targetId){
+        const details = document.createElement('textarea');
+        details.className = 'details';
+        details.placeholder = 'Notes';     
+        details.textContent = notes;
+        parent.appendChild(details);
+
+        details.addEventListener('change', function(){
+            for(let i=0; i<projects.length; i++){
+                for(let y=0; y<projects[i].tasks.length; y++){
+                    if (targetId == (projects[i].tasks[y].id)){
+                        projects[i].tasks[y].detail = details.value;
+                        console.log(projects[i].tasks[y].detail);
+                        return;
+                    }
+                }
+            }
+            localStorage.setItem('projects', JSON.stringify(projects));
+        });      
+    }
+
+
+    
+}
 
 function timeConversion(time){
     const hours =  time.split(':')[0];
