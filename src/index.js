@@ -14,9 +14,14 @@ function init(){
     title.textContent = 'To-Do List';
     header.appendChild(title);
 
+    //navbar and main div
+    const nbm = document.createElement('div');
+    nbm.className = 'nbm';
+    document.body.appendChild(nbm);
+
     //navbar
     const navbar = document.createElement('nav');
-    document.body.appendChild(navbar);
+    nbm.appendChild(navbar);
     createList(navArrMain,navbar,'nav-list');
     createList(projectsTitle, document.querySelector('.Projects'), 'project-list');
     addProjectButton(document.querySelector('.Projects'));
@@ -26,7 +31,7 @@ function init(){
     //main
     const main = document.createElement('div');
     main.className = 'main';
-    document.body.appendChild(main);
+    nbm.appendChild(main);
 
     //input fields
     setupInput(main);
