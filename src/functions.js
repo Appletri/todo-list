@@ -127,7 +127,7 @@ function updateContent(arr, filterTrue){
         let div = document.createElement('div');
         let targetId = arr[i].id;
         div.className = "taskItem";
-        div.innerHTML = `<div class='priority' id='${arr[i].id}'></div> <input id='${arr[i].id}cb' class='checkbox' type='checkbox'> <p>${arr[i].task} <p>${arr[i].dueDate} <p id='${arr[i].id}time'>${timeConversion(arr[i].time)}`;
+        div.innerHTML = `<div class='priority' id='${arr[i].id}p'></div> <input id='${arr[i].id}cb' class='checkbox' type='checkbox'> <p>${arr[i].task} <p>${arr[i].dueDate} <p id='${arr[i].id}time'>${timeConversion(arr[i].time)}`;
         if (filterTrue === true){
             addDelete(div, targetId, arr);
         }
@@ -416,11 +416,11 @@ function updatePriority(id, time, date){
     const currentW = weight(result);
 
     if (currentW >= 0){
-        document.getElementById(`${id}`).style.filter = `grayscale(100%)`;
+        document.getElementById(`${id}p`).style.filter = `grayscale(100%)`;
         document.getElementById(`${id}time`).textContent = 'OVERDUE'
     }
     else {
-        document.getElementById(`${id}`).style.filter = `grayscale(${currentW*-1}%)`;
+        document.getElementById(`${id}p`).style.filter = `grayscale(${currentW*-1}%)`;
     }
 
 }
