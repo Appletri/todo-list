@@ -6,10 +6,12 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 13,
   },
   rules: {
+    'indent': 'error'
   },
 };

@@ -4,9 +4,9 @@ module.exports = class Task {
     this.task = task;
     this.dueDate = dueDate;
     this.time = time;
-    this.status = 'incomplete';
+    this.status = "incomplete";
     this.id = 0;
-    this.detail = '';
+    this.detail = "";
     this.assignId = () => {
       const arrayId = parentArray.map((a) => a.id);
       const randomId = getRandomInt(1000);

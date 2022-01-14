@@ -1,175 +1,168 @@
-@import url('https://fonts.googleapis.com/css2?family=NTR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=NTR&display=swap");
 
-html{
-    font-family: 'NTR', sans-serif;;
+html {
+  font-family: "NTR", sans-serif;
 }
-header{
-    background-color: #df6666;
-    display: block;
-    color: white;
-    line-height: 5rem;
-
+header {
+  background-color: #df6666;
+  display: block;
+  color: white;
+  line-height: 5rem;
 }
-h1{
-    font-size: 5rem;
-    margin: 0px 1rem;
+h1 {
+  font-size: 5rem;
+  margin: 0px 1rem;
 }
-.nbm{
-    display: flex;
-
+.nbm {
+  display: flex;
 }
-nav{
-    font-size: 2rem;
-    background-color: aquamarine;
-    height: 92vh;
-    user-select: none;
-
+nav {
+  font-size: 2rem;
+  background-color: aquamarine;
+  height: 92vh;
+  user-select: none;
 }
 
-nav ul{
-    line-height: 2.2rem;
-    display: flex;
-    flex-flow: column wrap;
-    
+nav ul {
+  line-height: 2.2rem;
+  display: flex;
+  flex-flow: column wrap;
 }
-.project-list{
-    margin-bottom: 2rem;
-    margin-right: 2rem;
+.project-list {
+  margin-bottom: 2rem;
+  margin-right: 2rem;
 }
-.edit-projects-div{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-left: -40px;
-    padding: 1rem 0px;
+.edit-projects-div {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: -40px;
+  padding: 1rem 0px;
 }
-.edit-projects{
-    width: 12vw;
-    border: none;
-    font-size: 2rem;
-    font-family: 'NTR', sans-serif;;
-    height: 1.5rem;
-    background-color: aquamarine;
+.edit-projects {
+  width: 12vw;
+  border: none;
+  font-size: 2rem;
+  font-family: "NTR", sans-serif;
+  height: 1.5rem;
+  background-color: aquamarine;
 }
-.add-project{
-    transition: ease 0.3s;
+.add-project {
+  transition: ease 0.3s;
 }
 
 .add-project:hover {
-    color: blue;
+  color: blue;
 }
 
-.main{
-    display:flex;
-    flex-direction: column;
-    padding-left: 1rem;
-    
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
 }
 
-.task-input{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 2rem;
-    margin: 20px 0px;
+.task-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  margin: 20px 0px;
 }
 
-form{
-    display:flex;
-    font-size: 1.5rem;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    line-height: .5rem;
-    
+form {
+  display: flex;
+  font-size: 1.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  line-height: 0.5rem;
 }
 
-.taskInput label{
-    margin: -10px 0px;
+.taskInput label {
+  margin: -10px 0px;
 }
 
-.taskItem, .taskHeaders{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    flex-wrap: wrap;
-    font-size: 1.5rem;
-    padding-right: 5rem;
-    line-height: 1.5rem;
-    /* height: 2rem; */
-
+.taskItem,
+.taskHeaders {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+  padding-right: 5rem;
+  line-height: 1.5rem;
+  /* height: 2rem; */
 }
 
-.taskHeaders p, .taskItem p{
-    margin: 0px;
-    width: 20vw;
+.taskHeaders p,
+.taskItem p {
+  margin: 0px;
+  width: 20vw;
 }
 
-.taskHeaders{
-    padding-left: 24px;
+.taskHeaders {
+  padding-left: 24px;
 }
 
-.other-line{
-    background-color: rgb(226, 226, 226);
+.other-line {
+  background-color: rgb(226, 226, 226);
 }
 
 .selected {
-    font-size: larger;
-    font-weight: 600;
-    list-style:disc;
+  font-size: larger;
+  font-weight: 600;
+  list-style: disc;
 }
 
 .selectable {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .selectable:hover {
-    color: blue;
+  color: blue;
 }
 
-
-.delete{
-    font-family: 'Montserrat', sans-serif;
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    width:30px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(255, 0, 98);
-    color: white;  
-    font-size: 15px;
-    font-weight: bold;
-    user-select: none;
+.delete {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(255, 0, 98);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  user-select: none;
 }
 
 .delete:hover {
-    background-color: rgb(190, 0, 73);
-    cursor: pointer;
+  background-color: rgb(190, 0, 73);
+  cursor: pointer;
 }
 
-.priority{
-    display: block;
-    width: .3rem;
-    flex-shrink: 0;
-    height: 2.5rem;
-    background-color: rgb(255, 0, 98);
-    transform: translateX(-.5rem);
-    
+.priority {
+  display: block;
+  width: 0.3rem;
+  flex-shrink: 0;
+  height: 2.5rem;
+  background-color: rgb(255, 0, 98);
+  transform: translateX(-0.5rem);
 }
 
-.checkbox:active{
-    background-color: aquamarine;
+.checkbox:active {
+  background-color: aquamarine;
 }
 
 .checked {
-    color: grey;
-    text-decoration: line-through;
+  color: grey;
+  text-decoration: line-through;
 }
-.details{
-    width: 50vw;
-    height:7rem;
-    background-color: #df666600;
-    border: none;
+.details {
+  width: 50vw;
+  height: 7rem;
+  background-color: #df666600;
+  border: none;
 }
